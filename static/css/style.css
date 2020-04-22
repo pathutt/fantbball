@@ -1,0 +1,35 @@
+.divider {
+    border-right: 1px solid black;
+}
+
+.scrollTable {
+    height:300px;
+    overflow-y: scroll;
+}
+
+.scrollTable thead th {
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+    background: black;
+}
+
+.scrollTable thead th {
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+    background: black;
+}
+
+tbody {
+    padding-top: 10px;
+}
+
+/*.tableFixHead,*/
+/*.tableFixHead td {*/
+/*    box-shadow: inset 1px -1px #000;*/
+/*}*/
+
+/*.tableFixHead th {*/
+/*    box-shadow: inset 1px 1px #000, 0 1px #000;*/
+/*}*/

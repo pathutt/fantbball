@@ -7,7 +7,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="/static/css/style.css">
     <title>Hello, world!</title>
   </head>
   <body>
@@ -58,43 +58,41 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="card-body">
-                        <table class="table table-striped table-dark">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Rank</th>
-                                    <th scope="col">First</th>
-                                    <th scope="col">Last</th>
-                                    <th scope="col">Teamp</th>
-                                    <th scope="col">Position</th>
-                                    <th scope="col">AVG</th>
-                                    <th scope="col">RUNS</th>
-                                    <th scope="col">RBI</th>
-                                    <th scope="col">HR</th>
-                                    <th scope="col">SB</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>@fat</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                        <td>Larry</td>
-                                        <td>the Bird</td>
-                                        <td>@twitter</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <div class="card-body table-wrapper p-0">
+                        <div class="scrollTable">
+                            <table class="h-100 w-100 table tableVert table-striped table-dark">
+                                <thead>
+                                    <tr>
+                                        <th>Rank</th>
+                                        <th>First</th>
+                                        <th>Last</th>
+                                        <th>Teamp</th>
+                                        <th>Position</th>
+                                        <th>AVG</th>
+                                        <th>RUNS</th>
+                                        <th>RBI</th>
+                                        <th>HR</th>
+                                        <th>SB</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for item in rows %}
+                                    <tr>
+                                        <td>{{item[0]}}</td>
+                                        <td>{{item[1]}}</td>
+                                        <td>{{item[2]}}</td>
+                                        <td>{{item[3]}}</td>
+                                        <td>{{item[4]}}</td>
+                                        <td>{{item[5]}}</td>
+                                        <td>{{item[6]}}</td>
+                                        <td>{{item[7]}}</td>
+                                        <td>{{item[8]}}</td>
+                                        <td>{{item[9]}}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
         </div>
@@ -102,7 +100,7 @@
             <div class="col-5 text-center mt-2">
                 <h3>Hitting Categories:</h3>
             </div>
-            <div class="col-1 border-right">
+            <div class="col-1 divider">
             </div>
             <div class="col-1">
             </div>
@@ -205,8 +203,7 @@
                     </label>
                 </div>
             </div>
-            </dv>
-            <div class="col-1 border-right">
+            <div class="col-1 divider">
             </div>
             <div class="col-1">
             </div>
@@ -321,5 +318,6 @@
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  <script src="static/js/home.js"></script>
   </body>
 </html>
