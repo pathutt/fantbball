@@ -10,19 +10,6 @@
 .scrollTable thead th {
     position: sticky;
     top: 0;
-    z-index: 9999;
-    background: black;
-}
-
-.scrollTable thead th {
-    position: sticky;
-    top: 0;
-    z-index: 9999;
-    background: black;
-}
-
-tbody {
-    padding-top: 10px;
 }
 
 /*.tableFixHead,*/

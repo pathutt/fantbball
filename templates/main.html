@@ -11,20 +11,19 @@
     <title>Hello, world!</title>
   </head>
   <body>
-    <div class="container width-100">
         <div class="row mt-2">
             <div class="col-12 "></div>
                 <div class="card text-center mx-auto ">
                     <div class="card-header">
                         <ul class="nav nav-tabs card-header-tabs">
                             <li class="nav-item">
-                                <a class="nav-link active" href="#">Hitters</a>
+                                <a class="nav-link active" href="/">Hitters</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Pitchers</a>
+                                <a class="nav-link" >Pitchers</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">C</a>
+                                <a class="nav-link" href="/catcher" id="catcher">C</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">1B</a>
@@ -63,31 +62,17 @@
                             <table class="h-100 w-100 table tableVert table-striped table-dark">
                                 <thead>
                                     <tr>
-                                        <th>Rank</th>
-                                        <th>First</th>
-                                        <th>Last</th>
-                                        <th>Teamp</th>
-                                        <th>Position</th>
-                                        <th>AVG</th>
-                                        <th>RUNS</th>
-                                        <th>RBI</th>
-                                        <th>HR</th>
-                                        <th>SB</th>
+                                        {% for item in cols %}
+                                        <th>{{item}}</th>
+                                        {% endfor %}
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {% for item in rows %}
                                     <tr>
-                                        <td>{{item[0]}}</td>
-                                        <td>{{item[1]}}</td>
-                                        <td>{{item[2]}}</td>
-                                        <td>{{item[3]}}</td>
-                                        <td>{{item[4]}}</td>
-                                        <td>{{item[5]}}</td>
-                                        <td>{{item[6]}}</td>
-                                        <td>{{item[7]}}</td>
-                                        <td>{{item[8]}}</td>
-                                        <td>{{item[9]}}</td>
+                                    {% for i in range(length) %}
+                                        <td>{{item[i]}}</td>
+                                        {% endfor %}
                                     </tr>
                                     {% endfor %}
                                 </tbody>
@@ -108,207 +93,207 @@
                 <h3>Pitching Categories:</h3>
             </div>
         </div>
-        <div class="row">
-            <div class="col-1 mt-2">
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                    <label class="form-check-label" for="defaultCheck1">
-                        AB
-                    </label>
+        <form action="/", methods="POST">
+            <div class="row">
+                <div class="col-1 mt-2">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="AB" id="defaultCheck1" name="hitter">
+                        <label class="form-check-label" for="defaultCheck1">
+                            AB
+                        </label>
+                    </div>
+                    <div class="form-check form-check-inline mt-1">
+                        <input class="form-check-input" type="checkbox" value="R" id="defaultCheck2" name="hitter" checked>
+                        <label class="form-check-label" for="defaultCheck2">
+                            R
+                        </label>
+                    </div>
+                    <div class="form-check form-check-inline mt-1">
+                        <input class="form-check-input" type="checkbox" value="HR" id="defaultCheck2" name="hitter" checked>
+                        <label class="form-check-label" for="defaultCheck2">
+                            HR
+                        </label>
+                    </div>
                 </div>
-                <div class="form-check form-check-inline mt-1">
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck2" checked>
-                    <label class="form-check-label" for="defaultCheck2">
-                        R
-                    </label>
+                <div class="col-1 mt-2">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="RBI" id="defaultCheck2" name="hitter" checked>
+                        <label class="form-check-label" for="defaultCheck2">
+                            RBI
+                        </label>
+                    </div>
+                    <div class="form-check form-check-inline mt-1">
+                        <input class="form-check-input" type="checkbox" value="SB" id="defaultCheck2" name="hitter" checked>
+                        <label class="form-check-label" for="defaultCheck2">
+                            SB
+                        </label>
+                    </div>
+                    <div class="form-check form-check-inline mt-1">
+                        <input class="form-check-input" type="checkbox" value="AVG" id="defaultCheck2" name="hitter" checked>
+                        <label class="form-check-label" for="defaultCheck2">
+                            AVG
+                        </label>
+                    </div>
                 </div>
-                <div class="form-check form-check-inline mt-1">
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck2" checked>
-                    <label class="form-check-label" for="defaultCheck2">
-                        HR
-                    </label>
+                <div class="col-1 mt-2">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="OBP" name="hitter" id="defaultCheck2">
+                        <label class="form-check-label" for="defaultCheck2">
+                            OBP
+                        </label>
+                    </div>
+                    <div class="form-check form-check-inline mt-1">
+                        <input class="form-check-input" type="checkbox" value="H" name="hitter" id="defaultCheck2">
+                        <label class="form-check-label" for="defaultCheck2">
+                            H
+                        </label>
+                    </div>
+                    <div class="form-check form-check-inline mt-1">
+                        <input class="form-check-input" type="checkbox" value="DOUBLES" name="hitter" id="defaultCheck2">
+                        <label class="form-check-label" for="defaultCheck2">
+                            DOUBLES
+                        </label>
+                    </div>
+                </div>
+                <div class="col-1 mt-2">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="TRIPLES" name="hitter" id="defaultCheck2">
+                        <label class="form-check-label" for="defaultCheck2">
+                            TRIPLES
+                        </label>
+                    </div>
+                    <div class="form-check form-check-inline mt-1">
+                        <input class="form-check-input" type="checkbox" value="WALKS" name="hitter" id="defaultCheck2">
+                        <label class="form-check-label" for="defaultCheck2">
+                            WALKS
+                        </label>
+                    </div>
+                    <div class="form-check form-check-inline mt-1">
+                        <input class="form-check-input" type="checkbox" value="STRIKEOUTS" name="hitter" id="defaultCheck2">
+                        <label class="form-check-label" for="defaultCheck2">
+                            STRIKEOUTS
+                        </label>
+                    </div>
+                </div>
+                <div class="col-1 mt-2">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="SLG" name="hitter" id="defaultCheck2">
+                        <label class="form-check-label" for="defaultCheck2">
+                            SLG
+                        </label>
+                    </div>
+                    <div class="form-check form-check-inline mt-1">
+                        <input class="form-check-input" type="checkbox" value="OPS" name="hitter" id="defaultCheck2">
+                        <label class="form-check-label" for="defaultCheck2">
+                            OPS
+                        </label>
+                    </div>
+                </div>
+                <div class="col-1 divider">
+                </div>
+                <div class="col-1">
+                </div>
+                <div class="col-1 mt-2">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                        <label class="form-check-label" for="defaultCheck1">
+                            IP
+                        </label>
+                    </div>
+                    <div class="form-check form-check-inline mt-1">
+                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck2" checked>
+                        <label class="form-check-label" for="defaultCheck2">
+                            K
+                        </label>
+                    </div>
+                    <div class="form-check form-check-inline mt-1">
+                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck2" checked>
+                        <label class="form-check-label" for="defaultCheck2">
+                            W
+                        </label>
+                    </div>
+                </div>
+                <div class="col-1 mt-2">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck2" checked>
+                        <label class="form-check-label" for="defaultCheck2">
+                            SV
+                        </label>
+                    </div>
+                    <div class="form-check form-check-inline mt-1">
+                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck2" checked>
+                        <label class="form-check-label" for="defaultCheck2">
+                            ERA
+                        </label>
+                    </div>
+                    <div class="form-check form-check-inline mt-1">
+                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck2" checked>
+                        <label class="form-check-label" for="defaultCheck2">
+                            WHIP
+                        </label>
+                    </div>
+                </div>
+                <div class="col-1 mt-2">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
+                        <label class="form-check-label" for="defaultCheck2">
+                            ER
+                        </label>
+                    </div>
+                    <div class="form-check form-check-inline mt-1">
+                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
+                        <label class="form-check-label" for="defaultCheck2">
+                            H
+                        </label>
+                    </div>
+                    <div class="form-check form-check-inline mt-1">
+                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
+                        <label class="form-check-label" for="defaultCheck2">
+                            WALKS
+                        </label>
+                    </div>
+                </div>
+                <div class="col-1 mt-2">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
+                        <label class="form-check-label" for="defaultCheck2">
+                            HR
+                        </label>
+                    </div>
+                    <div class="form-check form-check-inline mt-1">
+                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
+                        <label class="form-check-label" for="defaultCheck2">
+                            G
+                        </label>
+                    </div>
+                    <div class="form-check form-check-inline mt-1">
+                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
+                        <label class="form-check-label" for="defaultCheck2">
+                            GS
+                        </label>
+                    </div>
+                </div>
+                <div class="col-1 mt-2">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
+                        <label class="form-check-label" for="defaultCheck2">
+                            L
+                        </label>
+                    </div>
+                    <div class="form-check form-check-inline mt-1">
+                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
+                        <label class="form-check-label" for="defaultCheck2">
+                            CG
+                        </label>
+                    </div>
+                </div>
+                <div class="w-100"></div>
+                <div class="col-5"></div>
+                <div class="col-2 text-center mt-2">
+                    <button  formmethod="post" type="submit" class="post-btn btn btn-secondary mx-auto text-center">Submit</button>
                 </div>
             </div>
-            <div class="col-1 mt-2">
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck2" checked>
-                    <label class="form-check-label" for="defaultCheck2">
-                        RBI
-                    </label>
-                </div>
-                <div class="form-check form-check-inline mt-1">
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck2" checked>
-                    <label class="form-check-label" for="defaultCheck2">
-                        SB
-                    </label>
-                </div>
-                <div class="form-check form-check-inline mt-1">
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck2" checked>
-                    <label class="form-check-label" for="defaultCheck2">
-                        AVG
-                    </label>
-                </div>
-            </div>
-            <div class="col-1 mt-2">
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
-                    <label class="form-check-label" for="defaultCheck2">
-                        OBP
-                    </label>
-                </div>
-                <div class="form-check form-check-inline mt-1">
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
-                    <label class="form-check-label" for="defaultCheck2">
-                        H
-                    </label>
-                </div>
-                <div class="form-check form-check-inline mt-1">
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
-                    <label class="form-check-label" for="defaultCheck2">
-                        DOUBLES
-                    </label>
-                </div>
-            </div>
-            <div class="col-1 mt-2">
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
-                    <label class="form-check-label" for="defaultCheck2">
-                        TRIPLES
-                    </label>
-                </div>
-                <div class="form-check form-check-inline mt-1">
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
-                    <label class="form-check-label" for="defaultCheck2">
-                        WALKS
-                    </label>
-                </div>
-                <div class="form-check form-check-inline mt-1">
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
-                    <label class="form-check-label" for="defaultCheck2">
-                        STRIKEOUTS
-                    </label>
-                </div>
-            </div>
-            <div class="col-1 mt-2">
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
-                    <label class="form-check-label" for="defaultCheck2">
-                        SLG
-                    </label>
-                </div>
-                <div class="form-check form-check-inline mt-1">
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
-                    <label class="form-check-label" for="defaultCheck2">
-                        OPS
-                    </label>
-                </div>
-            </div>
-            <div class="col-1 divider">
-            </div>
-            <div class="col-1">
-            </div>
-            <div class="col-1 mt-2">
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                    <label class="form-check-label" for="defaultCheck1">
-                        IP
-                    </label>
-                </div>
-                <div class="form-check form-check-inline mt-1">
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck2" checked>
-                    <label class="form-check-label" for="defaultCheck2">
-                        K
-                    </label>
-                </div>
-                <div class="form-check form-check-inline mt-1">
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck2" checked>
-                    <label class="form-check-label" for="defaultCheck2">
-                        W
-                    </label>
-                </div>
-            </div>
-            <div class="col-1 mt-2">
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck2" checked>
-                    <label class="form-check-label" for="defaultCheck2">
-                        SV
-                    </label>
-                </div>
-                <div class="form-check form-check-inline mt-1">
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck2" checked>
-                    <label class="form-check-label" for="defaultCheck2">
-                        ERA
-                    </label>
-                </div>
-                <div class="form-check form-check-inline mt-1">
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck2" checked>
-                    <label class="form-check-label" for="defaultCheck2">
-                        WHIP
-                    </label>
-                </div>
-            </div>
-            <div class="col-1 mt-2">
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
-                    <label class="form-check-label" for="defaultCheck2">
-                        ER
-                    </label>
-                </div>
-                <div class="form-check form-check-inline mt-1">
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
-                    <label class="form-check-label" for="defaultCheck2">
-                        H
-                    </label>
-                </div>
-                <div class="form-check form-check-inline mt-1">
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
-                    <label class="form-check-label" for="defaultCheck2">
-                        WALKS
-                    </label>
-                </div>
-            </div>
-            <div class="col-1 mt-2">
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
-                    <label class="form-check-label" for="defaultCheck2">
-                        HR
-                    </label>
-                </div>
-                <div class="form-check form-check-inline mt-1">
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
-                    <label class="form-check-label" for="defaultCheck2">
-                        G
-                    </label>
-                </div>
-                <div class="form-check form-check-inline mt-1">
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
-                    <label class="form-check-label" for="defaultCheck2">
-                        GS
-                    </label>
-                </div>
-            </div>
-            <div class="col-1 mt-2">
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
-                    <label class="form-check-label" for="defaultCheck2">
-                        L
-                    </label>
-                </div>
-                <div class="form-check form-check-inline mt-1">
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
-                    <label class="form-check-label" for="defaultCheck2">
-                        CG
-                    </label>
-                </div>
-            </div>
-            <div class="w-100"></div>
-            <div class="col-5"></div>
-            <div class="col-2 text-center mt-2">
-                <button type="button" class="btn btn-secondary mx-auto text-center">Submit</button>
-            </div>
-            <div class="col-5"></div>
-
-        </div>
+        </form>
     </div>
 
 
