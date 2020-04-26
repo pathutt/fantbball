@@ -16,7 +16,7 @@ def hello_world():
         rows = generate_post_table(query)
         num_cols = len(rows[0])
         names = get_table_header(query)
-        return render_template('main.html', rows=rows, cols=names, length = num_cols)
+        return render_template('main.html', rows=rows, cols=names, length=num_cols)
 
     if request.method == 'POST':
         categories = request.form.getlist('hitter')
@@ -24,13 +24,17 @@ def hello_world():
         rows = generate_post_table(query)
         num_cols = len(rows[0])
         names = get_table_header(query)
-        return render_template('main.html', rows=rows, cols=names, length = num_cols)
+        return render_template('main.html', rows=rows, cols=names, length=num_cols)
 
 
 @app.route('/catcher')
 def get_catcher():
-    rows = query_catchers()
-    return render_template('main.html', rows=rows)
+    categories = ['avg', 'r', 'rbi', 'hr', 'sb']
+    query = post_query(categories)
+    rows = generate_post_table(query)
+    num_cols = len(rows[0])
+    names = get_table_header(query)
+    return render_template('main.html', rows=rows, cols=names, length=num_cols)
 
 # Connect to db
 def connect():
