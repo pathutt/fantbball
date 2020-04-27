@@ -59,21 +59,39 @@
                     </div>
                     <div class="card-body table-wrapper p-0">
                         <div class="scrollTable">
-                            <table class="h-100 w-100 table tableVert table-striped table-dark">
+                            <table id="hitters" class="h-100 w-100 table tableVert table-striped table-dark">
                                 <thead>
                                     <tr>
-                                        {% for item in cols %}
-                                        <th>{{item}}</th>
+                                        {% for item in hitter_cols_names%}
+                                            <th>{{item}}</th>
                                         {% endfor %}
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {% for item in rows %}
+                                    {% for item in hitter_rows %}
+                                        <tr>
+                                            {% for i in range(num_hitter_cols) %}
+                                                <td>{{item[i]}}</td>
+                                            {% endfor %}
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                            <table id="pitchers" class="h-100 w-100 table tableVert table-striped table-dark">
+                                <thead>
                                     <tr>
-                                    {% for i in range(length) %}
-                                        <td>{{item[i]}}</td>
+                                        {% for item in pitcher_cols_names%}
+                                            <th>{{item}}</th>
                                         {% endfor %}
                                     </tr>
+                                </thead>
+                                <tbody>
+                                    {% for item in pitcher_rows %}
+                                        <tr>
+                                            {% for i in range(num_pitcher_cols) %}
+                                                <td>{{item[i]}}</td>
+                                            {% endfor %}
+                                        </tr>
                                     {% endfor %}
                                 </tbody>
                             </table>

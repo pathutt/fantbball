@@ -12,6 +12,16 @@
     top: 0;
 }
 
+.crossedOut{
+    background-image: url(/static/images/crossOutTwo.png);
+    background-repeat: repeat-x;
+    background-position: 50% 50%;
+}
+
+#pitchers{
+    display: none;
+}
+
 /*.tableFixHead,*/
 /*.tableFixHead td {*/
 /*    box-shadow: inset 1px -1px #000;*/

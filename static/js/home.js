@@ -1,6 +1,6 @@
 function hideRows(){
     $('table tbody tr').each(function () {
-            $(this).hide();
+        $(this).hide();
     })
 }
 
@@ -80,6 +80,10 @@ $(document).ready(function() {
         hideRows();
         showRows("1B");
         showRows("3B");
+    });
+
+    $('tbody tr').click(function (){
+        $(this).toggleClass("crossedOut");
     });
 
     // $('.form-check-input').each(function () {
