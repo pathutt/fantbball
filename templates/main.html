@@ -20,7 +20,7 @@
                                 <a class="nav-link active" id="hitters">Hitters</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link"  >Pitchers</a>
+                                <a class="nav-link"  id="pitchers">Pitchers</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" id="catcher">C</a>
@@ -50,16 +50,16 @@
                                 <a class="nav-link" id="ci">CI</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">SP</a>
+                                <a class="nav-link" id="sp">SP</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">RP</a>
+                                <a class="nav-link" id="rp">RP</a>
                             </li>
                         </ul>
                     </div>
                     <div class="card-body table-wrapper p-0">
                         <div class="scrollTable">
-                            <table id="hitters" class="h-100 w-100 table tableVert table-striped table-dark">
+                            <table id="hitter_table" class="h-100 w-100 table tableVert table-striped table-dark">
                                 <thead>
                                     <tr>
                                         {% for item in hitter_cols_names%}
@@ -77,7 +77,7 @@
                                     {% endfor %}
                                 </tbody>
                             </table>
-                            <table id="pitchers" class="h-100 w-100 table tableVert table-striped table-dark">
+                            <table id="pitcher_table" class="h-100 w-100 table tableVert table-striped table-dark">
                                 <thead>
                                     <tr>
                                         {% for item in pitcher_cols_names%}
