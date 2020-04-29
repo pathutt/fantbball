@@ -6,8 +6,6 @@ import psycopg2
 app = Flask(__name__)
 
 
-#     cursor.execute("select hitters.id - 763 as rank, hitters.first_name, hitters.last_name, teams.abbr, string_agg(positions.position, ',') as pos, hitter_proj.avg, hitter_proj.r, hitter_proj.rbi, hitter_proj.hr, hitter_proj.sb from hitters INNER JOIN hitter_proj ON (hitters.id = hitter_proj.id)inner join teams on (hitters.team_id = teams.id)inner join hitter_pos on (hitters.id = hitter_pos.hitter_id)inner join positions on (hitter_pos.pos_id = positions.id)GROUP BY 1, 2, 3, 4, 6, 7, 8, 9, 10 ORDER BY 1;")
-
 @app.route('/', methods=['GET', 'POST'])
 def hello_world():
     if request.method == 'GET':
@@ -27,12 +25,20 @@ def hello_world():
                                pitcher_cols=pitcher_col_names, num_pitcher_cols=num_pitcher_cols)
 
     if request.method == 'POST':
-        categories = request.form.getlist('hitter')
-        query = create_hitters_query(categories)
-        rows = generate_post_table(query)
-        num_cols = len(rows[0])
-        names = get_table_header(query)
-        return render_template('main.html', rows=rows, cols=names, length=num_cols)
+        hitter_categories = request.form.getlist('hitter')
+        hitter_query = create_hitters_query(hitter_categories)
+        hitter_rows = generate_post_table(hitter_query)
+        num_hitter_cols = len(hitter_rows[0])
+        hitter_col_names = get_table_header(hitter_query)
+
+        pitcher_categories = request.form.getlist('pitcher')
+        pitcher_query = create_pitchers_query(pitcher_categories)
+        pitcher_rows = generate_post_table(pitcher_query)
+        num_pitcher_cols = len(pitcher_rows[0])
+        pitcher_col_names = get_table_header(pitcher_query)
+        return render_template('main.html', hitter_rows=hitter_rows, hitter_cols=hitter_col_names,
+                               num_hitter_cols=num_hitter_cols, pitcher_rows=pitcher_rows,
+                               pitcher_cols=pitcher_col_names, num_pitcher_cols=num_pitcher_cols)
 
 
 # Connect to db
@@ -66,8 +72,8 @@ def create_hitters_query(checked):
             "join hitter_pos on (hitters.id = " \
             "hitter_pos.hitter_id)inner join " \
             "positions on (hitter_pos.pos_id = " \
-            "positions.id)GROUP BY 1, 2, 3, 4, " \
-            "6, 7, 8, 9, 10 ORDER BY 1; "
+            "positions.id)GROUP BY 1, 2, 3, 4" +  \
+            generate_group_by(checked) + " ORDER BY 1; "
     return query
 
 
@@ -92,6 +98,14 @@ def get_table_header(query):
     return names
 
 
+def generate_group_by(checked):
+    num_categories = len(checked)
+    group_by_str = ""
+    for x in range(num_categories):
+        group_by_str = group_by_str + ", " + str(x + 6)
+    return group_by_str
+
+
 # Generates categories selected in query based on checkboxes. Used to create the hitter query
 def generate_pitchers_columns(checked):
     category_str = ""
@@ -112,8 +126,9 @@ def create_pitchers_query(checked):
             "join pitcher_pos on (pitchers.id = " \
             "pitcher_pos.pitcher_id)inner join " \
             "positions on (pitcher_pos.pos_id = " \
-            "positions.id)GROUP BY 1, 2, 3, 4, " \
-            "6, 7, 8, 9, 10 ORDER BY 1; "
+            "positions.id)GROUP BY 1, 2, 3, 4" + \
+            generate_group_by(checked) + \
+            " ORDER BY 1; "
     return query
 
 

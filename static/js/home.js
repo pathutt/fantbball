@@ -123,6 +123,13 @@ $(document).ready(function() {
         $(this).toggleClass("crossedOut");
     });
 
+    $('thead tr th').each(function(){
+        let checkedId = $(this).text();
+        if($('#' + checkedId).length >= 1 ) {
+            $('#' + checkedId).prop('checked', true);
+        };
+    });
+
     // $('.form-check-input').each(function () {
     //         let status = localStorage.getItem(this.id) === "false" ? false : true;
     //         if(status){
@@ -144,3 +151,12 @@ $(document).ready(function() {
     // });
 
 });
+
+// $( window ).on( "load", function() {
+//     $('thead tr th').each(function(){
+//         let checkedId = $(this).text();
+//         if($('#' + checkedId).length >= 1 ) {
+//             $('#' + checkedId).prop('checked', true);
+//         };
+//     });
+// });
