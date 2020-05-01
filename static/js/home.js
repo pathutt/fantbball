@@ -1,15 +1,18 @@
+// Hides all the rows that are showing to prepare the table for new set of rows
 function hideRows(){
     $('table tbody tr').each(function () {
         $(this).hide();
     })
 }
 
+// Shows all the rows on the specified table
 function showAllRows(){
     $('table tbody tr').each(function () {
         $(this).show();
     })
 }
 
+// Filters rows out of the table based on position text
 function showRows(target){
     $('table tbody tr').each(function () {
         if($(this).find('td').eq(4).text().indexOf(target) >= 0){
@@ -18,14 +21,18 @@ function showRows(target){
     });
 }
 
+// Shows the hitter table if pitcher table is currently showing. Scrolls to the top of the table if available.
 function showHitters(){
     $("#pitcher_table").hide();
     $("#hitter_table").show();
+    $('.scrollTable').scrollTop(0);
 }
 
+// Shows the pitcher table if a hitter table is currently showing. Scrolls to the top of the table if available.
 function showPitchers(){
     $("#hitter_table").hide();
     $("#pitcher_table").show();
+    $('.scrollTable').scrollTop(0);
 }
 
 $(document).ready(function() {
@@ -119,10 +126,12 @@ $(document).ready(function() {
         showRows("RP");
     });
 
+    // Loads the crossOutPNG on click and crosses or uncrosses out a row
     $('tbody tr').click(function (){
         $(this).toggleClass("crossedOut");
     });
 
+    // Checks checkboxes based on the header columns. Header columns are generated from checked checkboxes on submit
     $('thead tr th').each(function(){
         let checkedId = $(this).text();
         if($('#' + checkedId).length >= 1 ) {
@@ -130,33 +139,4 @@ $(document).ready(function() {
         };
     });
 
-    // $('.form-check-input').each(function () {
-    //         let status = localStorage.getItem(this.id) === "false" ? false : true;
-    //         if(status){
-    //             this.prop('checked');
-    //         } else {
-    //             this.removeAttr('checked');
-    //         }
-    // });
-    //
-    // $(".post-btn").click(function () {
-    //     $('.form-check-input').each(function () {
-    //         if($(this).is('checked')){
-    //             localStorage.setItem(this.id, "true");
-    //         } else {
-    //             localStorage.setItem(this.id, "false");
-    //         }
-    //
-    //     });
-    // });
-
 });
-
-// $( window ).on( "load", function() {
-//     $('thead tr th').each(function(){
-//         let checkedId = $(this).text();
-//         if($('#' + checkedId).length >= 1 ) {
-//             $('#' + checkedId).prop('checked', true);
-//         };
-//     });
-// });
