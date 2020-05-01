@@ -84,7 +84,6 @@ def create_table_query(checked, table):
             "positions.id) inner join ranks on (" + table + ".id = ranks.id)" \
             " GROUP BY ranks.rank, 2, 3, 4" + \
             generate_group_by(checked) + " ORDER BY 1; "
-    print(query)
     return query
 
 
